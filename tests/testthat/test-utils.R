@@ -16,16 +16,30 @@ test_that("assert_unique rejects duplicate business keys", {
 
 test_that("the source manifest pins every input", {
     sources <- manifest()$upstream
-    expect_true(all(c("pai", "quota_raj", "local_reservations") %in% names(sources)))
+    expect_true(all(c("pai", "local_elections_rajasthan", "local_reservations") %in% names(sources)))
     expect_match(
         sources$local_reservations$files[["data/maharashtra/ulb_ward_2012.csv"]],
         "^[0-9a-f]{64}$"
     )
     expect_match(sources$pai$files[["data/release/pai_gp.parquet"]], "^[0-9a-f]{64}$")
     expect_match(
-        sources$quota_raj$files[["data/raj/shrug_gp_raj_15_20_block.parquet"]],
+        sources$local_elections_rajasthan$files[["data/fin/elections/raj_15_20.parquet"]],
         "^[0-9a-f]{64}$"
     )
+})
+
+test_that("election cache paths are versioned and hashes are verified", {
+    cache <- tempfile("election-cache-")
+    dir.create(cache)
+    withr::local_envvar(INDIA_DATA_HOME = cache)
+    expect_error(resolve_election_file("local_elections_up", "unlisted.parquet"), "Unpinned")
+    source <- manifest()$upstream$local_elections_up
+    relative <- "data/fin/up_gp_elections_standardized.parquet"
+    path <- file.path(cache, "local_elections_up", source$ref, relative)
+    dir.create(dirname(path), recursive = TRUE)
+    writeLines("changed source", path)
+    expect_error(resolve_election_file("local_elections_up", relative), "Source hash mismatch")
+    unlink(cache, recursive = TRUE)
 })
 
 test_that("write_tex_macros writes named commands and rejects invalid names", {

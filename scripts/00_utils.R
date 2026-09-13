@@ -76,24 +76,24 @@ read_pai_state_long <- function(state) {
         )
 }
 
-resolve_quota_raj_panel <- function() {
-    spec <- manifest()$upstream$quota_raj
-    rel <- "data/raj/shrug_gp_raj_15_20_block.parquet"
-    explicit <- Sys.getenv("QUOTA_RAJ_PANEL", unset = "")
-    path <- if (nzchar(explicit)) path.expand(explicit) else file.path(spec$sibling, rel)
+resolve_election_file <- function(provider, rel) {
+    spec <- manifest()$upstream[[provider]]
+    if (is.null(spec) || is.null(spec$files[[rel]])) {
+        stop("Unpinned election input: ", provider, "/", rel, call. = FALSE)
+    }
+    cache <- Sys.getenv("INDIA_DATA_HOME", unset = "")
+    path <- if (nzchar(cache)) {
+        file.path(path.expand(cache), provider, spec$ref, rel)
+    } else {
+        file.path(spec$sibling, rel)
+    }
     path <- normalizePath(path, mustWork = TRUE)
     verify_sha256(path, spec$files[[rel]])
     path
 }
 
 resolve_up_election_file <- function() {
-    spec <- manifest()$upstream$local_elections_up
-    rel <- "data/fin/up_gp_elections_standardized.parquet"
-    explicit <- Sys.getenv("UP_ELECTION_FILE", unset = "")
-    path <- if (nzchar(explicit)) path.expand(explicit) else file.path(spec$sibling, rel)
-    path <- normalizePath(path, mustWork = TRUE)
-    verify_sha256(path, spec$files[[rel]])
-    path
+    resolve_election_file("local_elections_up", "data/fin/up_gp_elections_standardized.parquet")
 }
 
 resolve_reservations_file <- function(rel) {
