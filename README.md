@@ -181,7 +181,7 @@ make paper
 [PAI release v0.2.0](https://github.com/in-rolls/pai/releases/tag/v0.2.0), also on
 [Hugging Face](https://huggingface.co/datasets/soodoku/pai/tree/v0.2.0). The pipeline reads the
 Rajasthan and UP election files from `INDIA_DATA_HOME/{provider}/{ref}/{relative_path}`
-when `INDIA_DATA_HOME` is set, and from sibling repositories otherwise. For example,
+(default `~/data`). Missing files are copied from a matching sibling source or fetched from the pinned GitHub commit; every read verifies SHA256. For example,
 the Rajasthan panel is `local_elections_rajasthan/{ref}/data/fin/elections/raj_15_20.parquet`
 within that shared data directory. Every source is verified against its pinned SHA-256.
 `LOCAL_RESERVATIONS_DIR` selects another copy of the Mumbai inputs. Expected paths,

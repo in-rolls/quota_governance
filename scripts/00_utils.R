@@ -78,18 +78,28 @@ read_pai_state_long <- function(state) {
 
 resolve_election_file <- function(provider, rel) {
     spec <- manifest()$upstream[[provider]]
-    if (is.null(spec) || is.null(spec$files[[rel]])) {
-        stop("Unpinned election input: ", provider, "/", rel, call. = FALSE)
+    expected <- spec$files[[rel]]
+    if (is.null(expected)) stop("Unpinned election source: ", provider, "/", rel)
+    cache <- path.expand(Sys.getenv("INDIA_DATA_HOME", unset = "~/data"))
+    path <- file.path(cache, provider, spec$ref, rel)
+    if (!file.exists(path)) {
+        dir.create(dirname(path), recursive = TRUE, showWarnings = FALSE)
+        temporary <- tempfile(tmpdir = dirname(path))
+        on.exit(unlink(temporary), add = TRUE)
+        sibling <- file.path(spec$sibling, rel)
+        if (file.exists(sibling) && identical(
+            digest::digest(sibling, algo = "sha256", file = TRUE), expected
+        )) {
+            if (!file.copy(sibling, temporary)) stop("Cannot cache ", sibling)
+        } else {
+            url <- paste("https://raw.githubusercontent.com", spec$repo, spec$ref, rel, sep = "/")
+            utils::download.file(url, temporary, mode = "wb", quiet = TRUE)
+        }
+        verify_sha256(temporary, expected)
+        if (!file.rename(temporary, path)) stop("Cannot save verified source: ", path)
     }
-    cache <- Sys.getenv("INDIA_DATA_HOME", unset = "")
-    path <- if (nzchar(cache)) {
-        file.path(path.expand(cache), provider, spec$ref, rel)
-    } else {
-        file.path(spec$sibling, rel)
-    }
-    path <- normalizePath(path, mustWork = TRUE)
-    verify_sha256(path, spec$files[[rel]])
-    path
+    verify_sha256(path, expected)
+    normalizePath(path, mustWork = TRUE)
 }
 
 resolve_up_election_file <- function() {
