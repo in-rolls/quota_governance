@@ -38,7 +38,7 @@ One row in each analysis-ready file is one election GP observed against one PAI 
 | `raw_gp_name_2021` | same | character | election GP | 2021 rows with a published GP name | source GP name | blank | source missingness | imported raw field | `local_elections_up` |
 | `raw_reservation_2021` | same | character | election GP | all 2021 rows | published reservation category | none | none | imported raw field | `local_elections_up` |
 | `raw_lgd_block_code` | same | character | election GP | all 2021 rows | LGD block code | none | none | reviewed block crosswalk | `local_elections_up` |
-| `raw_lgd_gp_code` | `local_elections_rajasthan/data/fin/elections/gp_lgd_crosswalk.parquet`, joined by `match_key` | character | election GP | accepted election-to-LGD GP links | LGD GP code | missing when unlinked | linkage missingness | exact or reviewed preclink link | `local_elections_up` |
+| `raw_lgd_gp_code` | same | character | election GP | accepted election-to-LGD GP links | LGD GP code | missing when unlinked | linkage missingness | exact or reviewed preclink link | `local_elections_up` |
 | `raw_lgd_gp_link_method` | same | character | election GP | accepted election-to-LGD GP links | exact normalized name, preclink | missing when unlinked | linkage missingness | imported unchanged | `local_elections_up` |
 | `an_women_reserved` | same | integer | election GP | all 2021 rows | 0, 1 | none allowed | none | 1 only for an explicitly women-reserved seat | `01d_up_treatment_prepare.R` |
 | `assignment_stratum` | same | character | election GP | all 2021 rows | district, LGD block, caste composite | none | none | concatenated with explicit separators | `01d_up_treatment_prepare.R` |
