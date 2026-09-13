@@ -169,8 +169,8 @@ Requirements:
 - XeLaTeX and `latexmk`
 
 ```bash
-git clone https://github.com/in-rolls/quota_unquote.git
-cd quota_unquote
+git clone https://github.com/in-rolls/quota_governance.git
+cd quota_governance
 R -e "renv::restore()"
 uv sync --all-groups
 PAI_RELEASE_FILE=/path/to/pai_gp.parquet Rscript scripts/99_run_all.R
