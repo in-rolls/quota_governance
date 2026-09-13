@@ -43,8 +43,8 @@ The project joins four sources:
   and 2023-24.
 - [Uttar Pradesh local elections](https://github.com/in-rolls/local_elections_up), including
   the 2021 reservation category and reviewed LGD links.
-- [Rajasthan reservation data](https://github.com/in-rolls/quota_raj) for the 2020 sarpanch
-  cycle.
+- [Rajasthan local elections](https://github.com/in-rolls/local_elections_rajasthan), with
+  the 2015–2020 reservation panel and reviewed election-to-LGD bridge.
 - [local_reservations](https://github.com/in-rolls/local_reservations) for Mumbai: the seat
   reservation of the 2007, 2012 and 2017 councils and the Praja Foundation's ward-level
   citizen ratings of councillors, six survey waves from 2011 to 2018, mirrored there from
@@ -83,7 +83,7 @@ indicator browser, are in [`docs/pai_theme8_indicators.csv`](docs/pai_theme8_ind
 
 Both PAI vintages carry LGD Gram Panchayat codes in [PAI release v0.2.0](https://github.com/in-rolls/pai/releases/tag/v0.2.0),
 so each wave joins directly on the reviewed election-to-LGD link. Rajasthan's election
-panel has an LGD code for 4,729 of its 7,882 GPs; the rest use exact normalized names within
+panel has an LGD code for 4,728 of its 7,882 GPs; the rest use exact normalized names within
 manually reviewed crosswalks for reorganized districts and blocks. Fuzzy name proposals
 never enter the primary link; a reviewed fuzzy link could only feed a robustness variant.
 Failed links remain missing and are never coded as zero.
@@ -91,11 +91,11 @@ Failed links remain missing and are never coded as zero.
 | State | Election GPs | PAI 2.0 linked | Link rate | Estimation sample |
 |---|---:|---:|---:|---:|
 | Uttar Pradesh | 49,773 | 38,388 | 77.1% | 38,277 |
-| Rajasthan | 7,882 | 5,723 | 72.6% | 5,422 |
+| Rajasthan | 7,882 | 5,722 | 72.6% | 5,421 |
 | Mumbai (BMC) | 681 ward seats | 681 rated | 100% | 681 |
 
 UP link rates are 76.8% for women-reserved seats and 77.3% for other seats. Rajasthan rates
-are 73.0% and 72.3%, respectively. Similar rates reduce concern about differential linkage,
+are 72.9% and 72.3%, respectively. Similar rates reduce concern about differential linkage,
 but they do not recover unlinked Gram Panchayats. In UP the ceiling is the election release,
 not PAI: 38,397 of the 49,773 winners carry a reviewed LGD code, and PAI 2.0 scores all
 57,678 UP Gram Panchayats, as the
@@ -107,7 +107,7 @@ reports.
 | State | Outcome | Estimate | 95% CI | Control SDs | Sample |
 |---|---|---:|---:|---:|---:|
 | Uttar Pradesh | PAI 2.0 | 0.07 | [-0.22, 0.36] | 0.004 | 38,277 |
-| Rajasthan | PAI 2.0 | -0.05 | [-0.59, 0.49] | -0.004 | 5,422 |
+| Rajasthan | PAI 2.0 | -0.05 | [-0.59, 0.49] | -0.004 | 5,421 |
 | Mumbai (BMC) | Praja 14-item rating index | 0.05 | [-0.08, 0.18] | 0.067 | 681 |
 
 The UP confidence interval excludes improvements larger than 0.020 control-group standard
@@ -180,10 +180,12 @@ make paper
 `PAI_RELEASE_FILE` must be the pinned `pai_gp.parquet` from
 [PAI release v0.2.0](https://github.com/in-rolls/pai/releases/tag/v0.2.0), also on
 [Hugging Face](https://huggingface.co/datasets/soodoku/pai/tree/v0.2.0). The pipeline reads the
-Rajasthan, UP and Mumbai files from sibling repositories by default. `QUOTA_RAJ_PANEL`,
-`UP_ELECTION_FILE` and `LOCAL_RESERVATIONS_DIR` can point to other copies of the pinned
-files. Expected paths, source
-commits, and SHA-256 hashes are recorded in [`data/manifest.yaml`](data/manifest.yaml).
+Rajasthan and UP election files from `INDIA_DATA_HOME/{provider}/{ref}/{relative_path}`
+(default `~/data`). Missing files are copied from a matching sibling source or fetched from the pinned GitHub commit; every read verifies SHA256. For example,
+the Rajasthan panel is `local_elections_rajasthan/{ref}/data/fin/elections/raj_15_20.parquet`
+within that shared data directory. Every source is verified against its pinned SHA-256.
+`LOCAL_RESERVATIONS_DIR` selects another copy of the Mumbai inputs. Expected paths,
+source commits, and hashes are recorded in [`data/manifest.yaml`](data/manifest.yaml).
 
 Run the project checks separately:
 

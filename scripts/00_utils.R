@@ -76,24 +76,34 @@ read_pai_state_long <- function(state) {
         )
 }
 
-resolve_quota_raj_panel <- function() {
-    spec <- manifest()$upstream$quota_raj
-    rel <- "data/raj/shrug_gp_raj_15_20_block.parquet"
-    explicit <- Sys.getenv("QUOTA_RAJ_PANEL", unset = "")
-    path <- if (nzchar(explicit)) path.expand(explicit) else file.path(spec$sibling, rel)
-    path <- normalizePath(path, mustWork = TRUE)
-    verify_sha256(path, spec$files[[rel]])
-    path
+resolve_election_file <- function(provider, rel) {
+    spec <- manifest()$upstream[[provider]]
+    expected <- spec$files[[rel]]
+    if (is.null(expected)) stop("Unpinned election source: ", provider, "/", rel)
+    cache <- path.expand(Sys.getenv("INDIA_DATA_HOME", unset = "~/data"))
+    path <- file.path(cache, provider, spec$ref, rel)
+    if (!file.exists(path)) {
+        dir.create(dirname(path), recursive = TRUE, showWarnings = FALSE)
+        temporary <- tempfile(tmpdir = dirname(path))
+        on.exit(unlink(temporary), add = TRUE)
+        sibling <- file.path(spec$sibling, rel)
+        if (file.exists(sibling) && identical(
+            digest::digest(sibling, algo = "sha256", file = TRUE), expected
+        )) {
+            if (!file.copy(sibling, temporary)) stop("Cannot cache ", sibling)
+        } else {
+            url <- paste("https://raw.githubusercontent.com", spec$repo, spec$ref, rel, sep = "/")
+            utils::download.file(url, temporary, mode = "wb", quiet = TRUE)
+        }
+        verify_sha256(temporary, expected)
+        if (!file.rename(temporary, path)) stop("Cannot save verified source: ", path)
+    }
+    verify_sha256(path, expected)
+    normalizePath(path, mustWork = TRUE)
 }
 
 resolve_up_election_file <- function() {
-    spec <- manifest()$upstream$local_elections_up
-    rel <- "data/fin/up_gp_elections_standardized.parquet"
-    explicit <- Sys.getenv("UP_ELECTION_FILE", unset = "")
-    path <- if (nzchar(explicit)) path.expand(explicit) else file.path(spec$sibling, rel)
-    path <- normalizePath(path, mustWork = TRUE)
-    verify_sha256(path, spec$files[[rel]])
-    path
+    resolve_election_file("local_elections_up", "data/fin/up_gp_elections_standardized.parquet")
 }
 
 resolve_reservations_file <- function(rel) {

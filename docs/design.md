@@ -71,6 +71,17 @@ functional-form search is primary. Any such result must be labeled exploratory.
   portal extract; see the re-estimation section below).
 - UP joined-file row contract: 49,773 election rows per PAI wave.
 
+The shared-pipeline migration pins UP commit `9f051cd607b9a42aa3afc498e57737200ef22024`
+with the same standardized-election SHA-256 shown above. Rajasthan now consumes the
+state repository's election panel and geographic bridge directly. The updated bridge
+removes one prior link (`tonk_newai_khandevat` to LGD 42097), leaving 4,728 of 7,882
+election rows with LGD codes; reservation assignments are unchanged. The two Newai
+election GPs `khandevat` and `khandwa` both proposed LGD 42097 (`Khandewat`) at the
+same Jaro-Winkler distance, 0.07407407407407415. The old producer kept the first
+claim; the current producer rejects the tied claims. Both PAI estimation samples
+lose one observation. The PAI 2.0 estimate changes from -0.05047 to -0.05040 points;
+the PAI 1.0 estimate changes from 0.25087 to 0.25219 points.
+
 ## Post-freeze results
 
 The design was frozen in commit `edd8b42cd4997fc0a01e516031cd886f3e66f099` before the first UP outcome-on-treatment regression. `tabs/up_pai_effects.csv` is the numerical source of truth.

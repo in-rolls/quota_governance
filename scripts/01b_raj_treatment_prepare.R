@@ -11,7 +11,15 @@ source(here("scripts", "00_config.R"))
 source(here("scripts", "00_utils.R"))
 
 message("Reading the Rajasthan reservation panel")
-panel <- read_parquet(resolve_quota_raj_panel()) |>
+panel <- read_parquet(resolve_election_file(
+    "local_elections_rajasthan", "data/fin/elections/raj_15_20.parquet"
+)) |>
+    left_join(
+        read_parquet(resolve_election_file(
+            "local_elections_rajasthan", "data/fin/elections/gp_lgd_crosswalk.parquet"
+        )),
+        by = "match_key", relationship = "many-to-one"
+    ) |>
     transmute(
         election_gp_key = .data$match_key_2020,
         raw_district_2020 = .data$district_std_2020,
@@ -56,7 +64,7 @@ profile <- panel |>
         assignment_strata = n_distinct(.data$assignment_stratum)
     )
 
-if (profile$rows != 7882L || profile$unique_lgd_gp_codes != 4729L) {
+if (profile$rows != 7882L || profile$unique_lgd_gp_codes != 4728L) {
     stop("Rajasthan panel counts differ from the profiled source", call. = FALSE)
 }
 
