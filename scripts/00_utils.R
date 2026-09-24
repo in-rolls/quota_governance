@@ -107,8 +107,8 @@ resolve_up_election_file <- function() {
 }
 
 resolve_reservations_file <- function(rel) {
-    spec <- manifest()$upstream$local_reservations
-    explicit <- Sys.getenv("LOCAL_RESERVATIONS_DIR", unset = "")
+    spec <- manifest()$upstream$local_elections
+    explicit <- Sys.getenv("LOCAL_ELECTIONS_DIR", unset = "")
     base <- if (nzchar(explicit)) path.expand(explicit) else spec$sibling
     path <- normalizePath(file.path(base, rel), mustWork = TRUE)
     verify_sha256(path, spec$files[[rel]])

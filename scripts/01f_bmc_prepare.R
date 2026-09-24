@@ -1,4 +1,4 @@
-# Build the Mumbai (BMC) ward-by-survey-wave analysis frame from local_reservations.
+# Build the Mumbai (BMC) ward-by-survey-wave analysis frame from local_elections.
 # Output: data/bmc/quota_unquote_bmc_2007_2017.parquet,
 #         data/bmc/bmc_profile.csv
 
