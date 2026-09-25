@@ -10,13 +10,13 @@ upstream:
       data/release/pai_gp.parquet: da92576bccc178612e6250c122ac4cf843c190683cf028a5f0d6358620848b1e
   local_elections_up:
     repo: in-rolls/local_elections_up
-    ref: 9f051cd607b9a42aa3afc498e57737200ef22024
+    ref: 3ef1d56f278a2ca98a2b9a61027c130781fb236f
     sibling: ../local_elections_up
     files:
-      data/fin/up_gp_elections_standardized.parquet: 986893d620e3d1d0d46e3d306909cc7acf3ccbae383346e4f47b39de9f62fe76
+      data/release/gp/gp_head_election_records.parquet: 742c3cb9efda2c84c6bb7f4ce6e2be0dafe5aaab1c1a66b0d02b5a641ff17560
   local_elections:
     repo: in-rolls/local_elections
-    ref: 4b14ed10dea82e498121bbfe0ddf64455ceb8c71
+    ref: 8c977fbdbbff2cbb18a32767116e014cfb876788
     sibling: ../local_elections
     files:
       data/maharashtra/ulb_ward_2012.csv: 2a3efe26109358564cc0697d972749b8261add3f39bf8c5f70e4b2db518b4816
@@ -25,7 +25,7 @@ upstream:
       data/maharashtra/mumbai/praja_ward_ratings_2011_2018.csv: 2f4bbbadd1783e84e57d55bce8a29764f37e89c5e40b0b8522fe0d4bc2cc1032
   local_elections_rajasthan:
     repo: in-rolls/local_elections_rajasthan
-    ref: 3d9face038d73bbf12c9b10e9f226e361e78581e
+    ref: 8773067fefe9c0ff549d0c9d12688018f19a156a
     sibling: ../local_elections_rajasthan
     files:
       data/fin/elections/raj_15_20.parquet: ed740ffb382967f6886ea4011e94645927a4e4d716ca31238878d6ad8b104a4f

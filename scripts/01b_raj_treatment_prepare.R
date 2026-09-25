@@ -1,7 +1,7 @@
 # 01b_raj_treatment_prepare.R
 # Prepare the 2015-2020 Rajasthan reservation panel and linkage fields.
-# Output: data/quota_raj/quota_raj_gp_raj_2015_2020.parquet,
-#         data/quota_raj/quota_raj_profile.csv
+# Output: data/quota_representation/quota_representation_gp_raj_2015_2020.parquet,
+#         data/quota_representation/quota_representation_profile.csv
 
 library(here)
 library(dplyr)
@@ -70,6 +70,6 @@ if (profile$rows != 7882L || profile$unique_lgd_gp_codes != 4728L) {
 
 write_parquet_receipt(
     panel,
-    here("data", "quota_raj", "quota_raj_gp_raj_2015_2020.parquet")
+    here("data", "quota_representation", "quota_representation_gp_raj_2015_2020.parquet")
 )
-write_csv_receipt(profile, here("data", "quota_raj", "quota_raj_profile.csv"))
+write_csv_receipt(profile, here("data", "quota_representation", "quota_representation_profile.csv"))

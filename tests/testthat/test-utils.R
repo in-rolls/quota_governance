@@ -34,7 +34,7 @@ test_that("election cache paths are versioned and hashes are verified", {
     withr::local_envvar(INDIA_DATA_HOME = cache)
     expect_error(resolve_election_file("local_elections_up", "unlisted.parquet"), "Unpinned")
     source <- manifest()$upstream$local_elections_up
-    relative <- "data/fin/up_gp_elections_standardized.parquet"
+    relative <- "data/release/gp/gp_head_election_records.parquet"
     path <- file.path(cache, "local_elections_up", source$ref, relative)
     dir.create(dirname(path), recursive = TRUE)
     writeLines("changed source", path)

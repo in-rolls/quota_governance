@@ -146,7 +146,7 @@ estimate <- function(data, outcome_name, label, seed) {
     )
 }
 
-frame <- read_parquet(here("data", "bmc", "quota_unquote_bmc_2007_2017.parquet"))
+frame <- read_parquet(here("data", "bmc", "quota_governance_bmc_2007_2017.parquet"))
 primary <- frame |> filter(.data$survey_year %in% BMC_PRIMARY_WAVES)
 
 results <- bind_rows(

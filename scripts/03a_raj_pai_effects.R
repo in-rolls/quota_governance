@@ -208,7 +208,7 @@ estimate_year <- function(joined, target_year, seed) {
 }
 
 joined <- read_parquet(
-    here("data", "quota_unquote", "quota_unquote_gp_raj_2022_2024.parquet")
+    here("data", "quota_governance", "quota_governance_gp_raj_2022_2024.parquet")
 )
 
 results <- bind_rows(

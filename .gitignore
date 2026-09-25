@@ -15,8 +15,8 @@ dist/
 *.egg-info/
 
 data/pai/*.parquet
-data/quota_raj/*.parquet
-data/quota_unquote/*.parquet
+data/quota_representation/*.parquet
+data/quota_governance/*.parquet
 data/bmc/*.parquet
 data/crosswalks/audit/*.csv
 data/crosswalks/audit/*.parquet

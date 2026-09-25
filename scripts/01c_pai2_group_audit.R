@@ -11,7 +11,7 @@ source(here("scripts", "00_config.R"))
 source(here("scripts", "00_utils.R"))
 
 panel <- read_parquet(
-    here("data", "quota_raj", "quota_raj_gp_raj_2015_2020.parquet")
+    here("data", "quota_representation", "quota_representation_gp_raj_2015_2020.parquet")
 ) |>
     select(
         left_district_std = election_district_std,
