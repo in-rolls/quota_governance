@@ -14,8 +14,8 @@ upstream:
     sibling: ../local_elections_up
     files:
       data/fin/up_gp_elections_standardized.parquet: 986893d620e3d1d0d46e3d306909cc7acf3ccbae383346e4f47b39de9f62fe76
-  local_reservations:
-    repo: in-rolls/local_reservations
+  local_elections:
+    repo: in-rolls/local_elections
     ref: 4b14ed10dea82e498121bbfe0ddf64455ceb8c71
     sibling: ../local_elections
     files:

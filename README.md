@@ -45,7 +45,7 @@ The project joins four sources:
   the 2021 reservation category and reviewed LGD links.
 - [Rajasthan local elections](https://github.com/in-rolls/local_elections_rajasthan), with
   the 2015–2020 reservation panel and reviewed election-to-LGD bridge.
-- [local_reservations](https://github.com/in-rolls/local_reservations) for Mumbai: the seat
+- [local_elections](https://github.com/in-rolls/local_elections) for Mumbai: the seat
   reservation of the 2007, 2012 and 2017 councils and the Praja Foundation's ward-level
   citizen ratings of councillors, six survey waves from 2011 to 2018, mirrored there from
   the CC0 replication deposit of Karekurve-Ramachandra and Lee (2025),
@@ -184,7 +184,7 @@ Rajasthan and UP election files from `INDIA_DATA_HOME/{provider}/{ref}/{relative
 (default `~/data`). Missing files are copied from a matching sibling source or fetched from the pinned GitHub commit; every read verifies SHA256. For example,
 the Rajasthan panel is `local_elections_rajasthan/{ref}/data/fin/elections/raj_15_20.parquet`
 within that shared data directory. Every source is verified against its pinned SHA-256.
-`LOCAL_RESERVATIONS_DIR` selects another copy of the Mumbai inputs. Expected paths,
+`LOCAL_ELECTIONS_DIR` selects another copy of the Mumbai inputs. Expected paths,
 source commits, and hashes are recorded in [`data/manifest.yaml`](data/manifest.yaml).
 
 Run the project checks separately:

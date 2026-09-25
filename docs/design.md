@@ -155,7 +155,7 @@ every ward in each non-election year and publishes ward-level mean ratings of
 the sitting councillor on roads, water, schools, sanitation, corruption, and so
 on, each on a 0 to 100 scale with higher better.
 
-Seat reservation and ratings come from `local_reservations` (pinned in
+Seat reservation and ratings come from `local_elections` (pinned in
 `data/manifest.yaml`): the 2012 and 2017 councils as schema slices, the 2007
 council as a supplemental file with a women's flag only, and the ratings as the
 CC0 replication deposit of Karekurve-Ramachandra and Lee (2025), Harvard
@@ -183,7 +183,7 @@ corruption or about the councillor's objective output.
   2007 council, 2016 for 2012, 2018 for 2017), the last non-election year of
   the term.
 - Treatment: `an_women_reserved`, 1 only when the seat's reservation names a
-  woman, from the `local_reservations` file, never from the councillor's sex.
+  woman, from the `local_elections` file, never from the councillor's sex.
 - Outcome: `an_rating_index14`, the mean of the 14 items present in every wave
   (13 service items and corruption), each standardised within wave. The
   satisfaction item is excluded from every index because it is inverted in the
@@ -216,7 +216,7 @@ general-body attendance, and questions asked in council.
 
 ### Frozen inputs
 
-- `local_reservations` commit `4b14ed10dea82e498121bbfe0ddf64455ceb8c71`.
+- `local_elections` commit `4b14ed10dea82e498121bbfe0ddf64455ceb8c71`.
 - Four file hashes pinned in `data/manifest.yaml`.
 - Row contract: 1,361 ward-waves; 227 wards per wave except 226 in 2014; 76
   women's seats in the 2007 council, 114 in 2017, and 115 in the 2012 source
