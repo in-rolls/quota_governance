@@ -1,5 +1,5 @@
 # Build the Mumbai (BMC) ward-by-survey-wave analysis frame from local_elections.
-# Output: data/bmc/quota_unquote_bmc_2007_2017.parquet,
+# Output: data/bmc/quota_governance_bmc_2007_2017.parquet,
 #         data/bmc/bmc_profile.csv
 
 library(arrow)
@@ -150,7 +150,7 @@ if (any(is.na(joined$an_rating_index14))) {
 }
 
 dir.create(here("data", "bmc"), showWarnings = FALSE)
-write_parquet_receipt(joined, here("data", "bmc", "quota_unquote_bmc_2007_2017.parquet"))
+write_parquet_receipt(joined, here("data", "bmc", "quota_governance_bmc_2007_2017.parquet"))
 
 profile <- joined |>
     group_by(.data$council, .data$survey_year) |>

@@ -8,7 +8,7 @@ library(here)
 source(here("scripts", "00_config.R"))
 source(here("scripts", "00_utils.R"))
 
-frame <- read_parquet(here("data", "bmc", "quota_unquote_bmc_2007_2017.parquet"))
+frame <- read_parquet(here("data", "bmc", "quota_governance_bmc_2007_2017.parquet"))
 
 stopifnot(nrow(frame) == 1361L)
 stopifnot(!anyDuplicated(frame[c("council", "ward_no", "survey_year")]))

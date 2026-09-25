@@ -10,7 +10,7 @@ source(here("scripts", "00_utils.R"))
 
 panel <- read_parquet(here("data", "up", "up_gp_2021.parquet"))
 joined <- read_parquet(
-    here("data", "quota_unquote", "quota_unquote_gp_up_2022_2024.parquet")
+    here("data", "quota_governance", "quota_governance_gp_up_2022_2024.parquet")
 )
 
 stopifnot(nrow(panel) == 49773L)

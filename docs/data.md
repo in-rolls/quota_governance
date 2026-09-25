@@ -147,7 +147,7 @@ cardinality, treatment levels, or crosswalk targets differ from these contracts.
 
 ## Mumbai (BMC) fields
 
-One row in `data/bmc/quota_unquote_bmc_2007_2017.parquet` is one ward observed in one Praja survey wave: 1,361 rows, 227 wards in each of six waves (226 in 2014). Seat reservation is joined from `local_elections` on council and ward number; every ward-wave matches exactly one seat.
+One row in `data/bmc/quota_governance_bmc_2007_2017.parquet` is one ward observed in one Praja survey wave: 1,361 rows, 227 wards in each of six waves (226 in 2014). Seat reservation is joined from `local_elections` on council and ward number; every ward-wave matches exactly one seat.
 
 | name | source file | type | unit | universe | values | missing codes | missing kind | transformation | provenance |
 |---|---|---|---|---|---|---|---|---|---|

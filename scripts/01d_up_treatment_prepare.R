@@ -14,7 +14,9 @@ source(here("scripts", "00_utils.R"))
 message("Reading the standardized UP election release")
 release <- read_parquet(resolve_up_election_file())
 
-if (nrow(release) != 212525L || ncol(release) != 42L) {
+# 43 columns: the UP release adds winner_markers_conflict (two Sonai, Mainpuri 2021
+# rows whose winner markers disagree); it is not used here.
+if (nrow(release) != 212525L || ncol(release) != 43L) {
     stop("The pinned UP election release differs from its published schema", call. = FALSE)
 }
 

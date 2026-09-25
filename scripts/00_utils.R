@@ -103,7 +103,7 @@ resolve_election_file <- function(provider, rel) {
 }
 
 resolve_up_election_file <- function() {
-    resolve_election_file("local_elections_up", "data/fin/up_gp_elections_standardized.parquet")
+    resolve_election_file("local_elections_up", "data/release/gp/gp_head_election_records.parquet")
 }
 
 resolve_reservations_file <- function(rel) {

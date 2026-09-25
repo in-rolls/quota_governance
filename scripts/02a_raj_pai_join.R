@@ -1,6 +1,6 @@
 # 02a_raj_pai_join.R
 # Link the Rajasthan reservation panel to PAI and prepare blinded fuzzy queues.
-# Output: data/quota_unquote/quota_unquote_gp_raj_2022_2024.parquet,
+# Output: data/quota_governance/quota_governance_gp_raj_2022_2024.parquet,
 #         data/crosswalks/audit/pai_coverage_by_treatment.csv,
 #         data/crosswalks/audit/pai2_unmatched_left.parquet,
 #         data/crosswalks/audit/pai2_unmatched_right.parquet
@@ -13,7 +13,7 @@ library(arrow)
 source(here("scripts", "00_config.R"))
 source(here("scripts", "00_utils.R"))
 
-panel <- read_parquet(here("data", "quota_raj", "quota_raj_gp_raj_2015_2020.parquet"))
+panel <- read_parquet(here("data", "quota_representation", "quota_representation_gp_raj_2015_2020.parquet"))
 pai <- read_parquet(here("data", "pai", "pai_gp_raj_2022_2024.parquet")) |>
     filter(.data$theme_slug == PAI_T8_SLUG)
 
@@ -391,7 +391,7 @@ group_status <- group_overrides |>
 
 write_parquet_receipt(
     joined,
-    here("data", "quota_unquote", "quota_unquote_gp_raj_2022_2024.parquet")
+    here("data", "quota_governance", "quota_governance_gp_raj_2022_2024.parquet")
 )
 write_parquet_receipt(
     unmatched_left,

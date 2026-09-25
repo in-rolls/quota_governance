@@ -82,6 +82,15 @@ claim; the current producer rejects the tied claims. Both PAI estimation samples
 lose one observation. The PAI 2.0 estimate changes from -0.05047 to -0.05040 points;
 the PAI 1.0 estimate changes from 0.25087 to 0.25219 points.
 
+On September 25, 2026 the inputs were re-pinned to the current state releases:
+UP `3ef1d56f278a2ca98a2b9a61027c130781fb236f` `data/release/gp/gp_head_election_records.parquet`
+(which replaced the deleted `data/fin/up_gp_elections_standardized.parquet`),
+Rajasthan `8773067fefe9c0ff549d0c9d12688018f19a156a` and `local_elections`
+`8c977fbdbbff2cbb18a32767116e014cfb876788`. The Rajasthan and Mumbai files are
+byte-identical at the new commits. The UP release has the same 212,525 rows and
+treatment; it adds `winner_markers_conflict` and blanks the winner of the two
+Sonai (Mainpuri) 2021 rows whose markers disagree. No table changes.
+
 ## Post-freeze results
 
 The design was frozen in commit `edd8b42cd4997fc0a01e516031cd886f3e66f099` before the first UP outcome-on-treatment regression. `tabs/up_pai_effects.csv` is the numerical source of truth.

@@ -1,5 +1,5 @@
 # Link the UP 2021 reservation table to both PAI waves.
-# Output: data/quota_unquote/quota_unquote_gp_up_2022_2024.parquet and linkage audits.
+# Output: data/quota_governance/quota_governance_gp_up_2022_2024.parquet and linkage audits.
 
 library(arrow)
 library(dplyr)
@@ -206,7 +206,7 @@ unmatched_right <- pai |>
 
 write_parquet_receipt(
     joined,
-    here("data", "quota_unquote", "quota_unquote_gp_up_2022_2024.parquet")
+    here("data", "quota_governance", "quota_governance_gp_up_2022_2024.parquet")
 )
 write_csv_receipt(
     coverage,
