@@ -209,3 +209,7 @@ make check
 - [`docs/data.md`](docs/data.md) defines variables, recodes, and linkage contracts.
 
 The manuscript source is [`ms/main.tex`](ms/main.tex); `make paper` builds `ms/main.pdf`.
+
+<!-- adjacent:start -->
+
+<!-- adjacent:end -->
