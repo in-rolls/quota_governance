@@ -212,4 +212,14 @@ The manuscript source is [`ms/main.tex`](ms/main.tex); `make paper` builds `ms/m
 
 <!-- adjacent:start -->
 
+## 🔗 Adjacent Repositories
+
+- [in-rolls/quota_corruption](https://github.com/in-rolls/quota_corruption) — Women’s seat reservations and corruption in rural India: published bribery evidence and SEPRI survey analysis.
+- [in-rolls/quota_elite_quality](https://github.com/in-rolls/quota_elite_quality) — Effect of Gender Quotas on Some Qualities of Elites
+- [in-rolls/quota_spending](https://github.com/in-rolls/quota_spending) — Effects of Randomly Assigned Reservations for Women Leaders in Indian Local Government on Allocation and Development Outcomes
+- [in-rolls/quota_pds](https://github.com/in-rolls/quota_pds) — Do women pradhans reduce corruption in the PDS? Forensics on 16M Rajasthan ration cards x GP reservation lottery: precise nulls, clean placebos.
+- [in-rolls/quota_marriage](https://github.com/in-rolls/quota_marriage) — Gender quotas and marriage outcomes in Rajasthan and Uttar Pradesh
+
+_Powered by [Adjacent](https://github.com/gojiplus/adjacent)_
+
 <!-- adjacent:end -->
