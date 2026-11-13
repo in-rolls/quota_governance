@@ -194,7 +194,7 @@ corruption or about the councillor's objective output.
 - Treatment: `an_women_reserved`, 1 only when the seat's reservation names a
   woman, from the `local_elections` file, never from the councillor's sex.
 - Outcome: `an_rating_index14`, the mean of the 14 items present in every wave
-  (13 service items and corruption), each standardised within wave. The
+  (13 service items and corruption), each standardized within wave. The
   satisfaction item is excluded from every index because it is inverted in the
   2018 wave (its correlation with the 13 service items is +0.44 in 2016 and
   -0.33 in 2018); the analysis copy of that item is blank in 2018 and the raw
